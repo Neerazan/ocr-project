@@ -1,21 +1,24 @@
 # Gemini OCR Project
 
 This project is a comprehensive OCR (Optical Character Recognition) solution that combines PDF processing, image enhancement, and user interface features. It consists of three main components:
+
 1. PDF OCR service (TypeScript/Node.js)
 2. Image processing service (Python)
 3. Web UI interface
 
 ## Project Structure
-.
-├── pdf-ocr/ # TypeScript-based PDF OCR service
-│ ├── src/ # Source code
-│ └── ocr_output/ # Output directory for OCR results
-├── image_processing/ # Python-based image processing service
-│ └── main.py # Main image processing application
-└── ocr-ui/ # Web interface for OCR operations
-├── src/ # UI source code
-└── public/ # Static assets
 
+```
+.
+├── pdf-ocr/            # TypeScript-based PDF OCR service
+│   ├── src/            # Source code
+│   └── ocr_output/     # Output directory for OCR results
+├── image_processing/   # Python-based image processing service
+│   └── main.py         # Main image processing application
+└── ocr-ui/             # Web interface for OCR operations
+    ├── src/            # UI source code
+    └── public/         # Static assets
+```
 
 ## Prerequisites
 
@@ -34,145 +37,130 @@ This project is a comprehensive OCR (Optical Character Recognition) solution tha
 ## Installation
 
 ### PDF OCR Service
-
 1. Navigate to the pdf-ocr directory:
-```bash
-cd pdf-ocr
-Install dependencies:
+   ```bash
+   cd pdf-ocr
+   ```
 
-bash
-npm install
-Create a .env file in the pdf-ocr directory:
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-env
-GOOGLE_GENERATIVE_AI_API_KEY=your_api_key_here
-OCR UI Service
-Navigate to the ocr-ui directory:
+3. Create a `.env` file in the pdf-ocr directory:
+   ```
+   GOOGLE_GENERATIVE_AI_API_KEY=your_api_key_here
+   ```
 
-bash
-cd ocr-ui
-Install dependencies:
+### OCR UI Service
+1. Navigate to the ocr-ui directory:
+   ```bash
+   cd ocr-ui
+   ```
 
-bash
-npm install
-Image Processing Service
-Install UV package manager:
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-bash
-pip install uv
-Install dependencies using UV:
+### Image Processing Service
+1. Install UV package manager:
+   ```bash
+   pip install uv
+   ```
 
-bash
-uv pip install -r pyproject.toml
-Running the Services
-Important Notes:
+2. Install dependencies using UV:
+   ```bash
+   uv pip install -r pyproject.toml
+   ```
 
-Always start the Python image processing service FIRST
+## Running the Services
 
-Configure image paths in pdf-ocr/src/index.ts before running
+**Important Notes:**
+- Always start the Python image processing service FIRST
+- Configure image paths in `pdf-ocr/src/index.ts` before running
+- Utilize AI enhancement functions in `src/ai/` for quality improvements
 
-Utilize AI enhancement functions in src/ai/ for quality improvements
+### Image Processing Service
+1. Navigate to the image_processing directory:
+   ```bash
+   cd image_processing
+   ```
 
-Image Processing Service
-Navigate to the image_processing directory:
+2. Start the FastAPI service with hot reload:
+   ```bash
+   uvicorn main:app --reload
+   ```
+   
+   Access at: http://localhost:8000
 
-bash
-cd image_processing
-Start the FastAPI service with hot reload:
+### PDF OCR Service
+1. From the pdf-ocr directory:
+   ```bash
+   npm start
+   ```
+   
+   Extracted text will be saved in `ocr_output/` as `.txt` files
 
-bash
-uvicorn main:app --reload
-Access at: http://localhost:8000
+### OCR UI Service
+1. From the ocr-ui directory:
+   ```bash
+   npm run dev
+   ```
+   
+   Access the UI at: http://localhost:3000
 
-PDF OCR Service
-From the pdf-ocr directory:
+## Features
 
-bash
-npm start
-Extracted text will be saved in ocr_output/ as .txt files
+### PDF OCR Service
+- High-quality PDF document processing
+- Text extraction with AI enhancements
+- Multi-page PDF support
+- Structured text output
+- Database integration for saving results
 
-OCR UI Service
-From the ocr-ui directory:
+### Image Processing Service
+- Image quality enhancement
+- Resolution upscaling
+- Noise reduction algorithms
+- FastAPI-based REST API
+- Batch processing support
 
-bash
-npm run dev
-Access the UI at: http://localhost:3000
+### OCR UI Service
+- PDF document upload interface
+- Real-time processing status
+- Full-text search capabilities
+- Results visualization
+- Database management interface
 
-Features
-PDF OCR Service
-High-quality PDF document processing
+## Key Improvements
 
-Text extraction with AI enhancements
+### Image Quality Enhancements:
+- Implemented advanced image preprocessing
+- Added resolution upscaling algorithms
+- Integrated noise reduction filters
 
-Multi-page PDF support
+### New Features:
+- Database storage for OCR results
+- Full-text search functionality
+- User-friendly web interface
+- Processing status tracking
 
-Structured text output
+## Dependencies
 
-Database integration for saving results
+### PDF OCR Service
+- `@ai-sdk/google` - AI-powered OCR enhancements
+- `pdf2pic` - PDF conversion library
+- `dotenv` - Environment management
 
-Image Processing Service
-Image quality enhancement
+### Image Processing Service
+- FastAPI - Web framework
+- OpenCV - Image processing
+- NumPy - Numerical operations
+- Python-multipart - File upload handling
 
-Resolution upscaling
-
-Noise reduction algorithms
-
-FastAPI-based REST API
-
-Batch processing support
-
-OCR UI Service
-PDF document upload interface
-
-Real-time processing status
-
-Full-text search capabilities
-
-Results visualization
-
-Database management interface
-
-Key Improvements
-Image Quality Enhancements:
-
-Implemented advanced image preprocessing
-
-Added resolution upscaling algorithms
-
-Integrated noise reduction filters
-
-New Features:
-
-Database storage for OCR results
-
-Full-text search functionality
-
-User-friendly web interface
-
-Processing status tracking
-
-Dependencies
-PDF OCR Service
-@ai-sdk/google - AI-powered OCR enhancements
-
-pdf-to-img - PDF conversion library
-
-dotenv - Environment management
-
-Image Processing Service
-FastAPI - Web framework
-
-OpenCV - Image processing
-
-NumPy - Numerical operations
-
-Python-multipart - File upload handling
-
-OCR UI Service
-React - Frontend framework
-
-Axios - API communication
-
-Tailwind CSS - Styling
-
-React-Query - State management
+### OCR UI Service
+- React - Frontend framework
+- Axios - API communication
+- Tailwind CSS - Styling
+- React-Query
